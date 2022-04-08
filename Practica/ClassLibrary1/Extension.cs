@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace ClassLibrary1
 {
@@ -66,10 +67,50 @@ namespace ClassLibrary1
 
         //6)crear un método de extensión que retorne una fecha en formato datetime a partir de un string
         //(si se genera una excepción por mal formato retornar el MinValue del tipo de datos).
-        public static DateTime StringAFecha()
+        public static DateTime StringAFecha(this string fecha)
         {
-
-            return null;
+            return DateTime.Parse(fecha);
         }
+
+        //7)	Crear un método de extensión que dado un string, retorne otro invertido.
+        public static string InvertirCadena(this string palabra)
+        {
+            char[] Invertido = palabra.ToArray();
+            Array.Reverse(Invertido);
+            return new string(Invertido);
+        }
+
+        //8)	Crear un método de extensión que dado un array de strings, 
+        //genere un solo string separado por un parámetro de tipo char.
+        public static string UnirArray(this List<string> lista, char parametro)
+        {
+            string resultado = "";
+            foreach (string x in lista)
+                resultado += x + parametro;
+
+            return resultado;
+        }
+
+        //9)	Crear un método de extensión que reciba un string 
+        //y retorne un valor booleano que indique si es un correo electrónico o no
+
+        public static bool EsCorreo(this string correo)
+        {
+            Regex rx = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            if (rx.IsMatch(correo))
+                return true;
+            return false;
+        }
+
+        //10)	Crear un método de extensión que reciba un string y retorne
+        //un valor booleano que indique si es un CUIT o no (investigar Regex).
+        public static bool EsCUIT(this string cuit)
+        {
+            Regex rx = new Regex(@"^\d{2}\-\d{8}\-\d{1}$");
+            if (rx.IsMatch(cuit))
+                return true;
+            return false;
+        }
+
     }
 }
