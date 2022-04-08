@@ -18,6 +18,7 @@ namespace ClassLibrary1
                 cant++;
 
             return cant;
+            //se puede usar resultado.Lengh o directamente hacer cadena.Split().Length
         }
 
         //2) Crear una sobreescritura del método 1 para
@@ -30,11 +31,13 @@ namespace ClassLibrary1
                 cant++;
 
             return cant;
+
+            //IDEM Anterior
         }
 
         //3)Cree un método de extensión que reciba dos fechas DateTime y calcule su diferencia en segundos
         //y que retorne un decimal con su formato en minutos (en valor decimal, es de 120 = 2 o 180 = 2,5)
-        public static decimal CalcularDiffFechas(this DateTime fecha1,this DateTime fecha2)
+        public static decimal CalcularDiffFechas(this DateTime fecha1,this DateTime fecha2) //This va una sola vez
         {
             TimeSpan resta = fecha2.Subtract(fecha1);
             double diff = resta.TotalSeconds / 60;
@@ -63,6 +66,8 @@ namespace ClassLibrary1
             }
 
             return suma*resta;
+
+            //Se puede usar expresiones lambda
         }
 
         //6)crear un método de extensión que retorne una fecha en formato datetime a partir de un string
@@ -70,6 +75,7 @@ namespace ClassLibrary1
         public static DateTime StringAFecha(this string fecha)
         {
             return DateTime.Parse(fecha);
+            //Usar try catch, si la fecha string es invalida el parse da error
         }
 
         //7)	Crear un método de extensión que dado un string, retorne otro invertido.
@@ -89,6 +95,7 @@ namespace ClassLibrary1
                 resultado += x + parametro;
 
             return resultado;
+            //Se puede usar String.Join
         }
 
         //9)	Crear un método de extensión que reciba un string 
